@@ -1,0 +1,134 @@
+name: Radar d'obsolescence
+
+on:
+  workflow_dispatch:
+    inputs:
+      nomenclature:
+        description: "Classeur XLSX ou nomenclature CSV présent dans le dépôt"
+        required: true
+        default: "PPC_Radar-obsolescence_Classeur_v1.1.xlsx"
+        type: string
+      produit:
+        description: "Fiche produit JSON (facultatif)"
+        required: false
+        default: ""
+        type: string
+      carte:
+        description: "Carte de démontage CSV (facultatif)"
+        required: false
+        default: ""
+        type: string
+      scenario:
+        description: "Scénario de démontage (facultatif)"
+        required: false
+        default: ""
+        type: string
+      onglet:
+        description: "Onglet à analyser (facultatif)"
+        required: false
+        default: ""
+        type: string
+      ords:
+        description: "CSV Open Repair Alliance (facultatif)"
+        required: false
+        default: ""
+        type: string
+      sortie:
+        description: "Dossier de résultats"
+        required: true
+        default: "resultats-action"
+        type: string
+      hors_ligne:
+        description: "Ne pas appeler les sources en ligne"
+        required: true
+        default: false
+        type: boolean
+
+  workflow_call:
+    inputs:
+      nomenclature:
+        description: "Classeur XLSX ou nomenclature CSV"
+        required: true
+        type: string
+      produit:
+        required: false
+        default: ""
+        type: string
+      carte:
+        required: false
+        default: ""
+        type: string
+      scenario:
+        required: false
+        default: ""
+        type: string
+      onglet:
+        required: false
+        default: ""
+        type: string
+      ords:
+        required: false
+        default: ""
+        type: string
+      sortie:
+        required: false
+        default: "resultats-action"
+        type: string
+      hors_ligne:
+        required: false
+        default: false
+        type: boolean
+    secrets:
+      MOUSER_API_KEY:
+        required: false
+      DIGIKEY_CLIENT_ID:
+        required: false
+      DIGIKEY_CLIENT_SECRET:
+        required: false
+      DIGIKEY_ACCOUNT_ID:
+        required: false
+      NEXAR_TOKEN:
+        required: false
+      NEXAR_CLIENT_ID:
+        required: false
+      NEXAR_CLIENT_SECRET:
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  analyser:
+    name: Analyser la nomenclature
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v7
+
+      - name: Lancer le radar
+        id: radar
+        uses: ./
+        with:
+          nomenclature: ${{ inputs.nomenclature }}
+          produit: ${{ inputs.produit }}
+          carte: ${{ inputs.carte }}
+          scenario: ${{ inputs.scenario }}
+          onglet: ${{ inputs.onglet }}
+          ords: ${{ inputs.ords }}
+          sortie: ${{ inputs.sortie }}
+          hors-ligne: ${{ inputs.hors_ligne }}
+          mouser-api-key: ${{ secrets.MOUSER_API_KEY }}
+          digikey-client-id: ${{ secrets.DIGIKEY_CLIENT_ID }}
+          digikey-client-secret: ${{ secrets.DIGIKEY_CLIENT_SECRET }}
+          digikey-account-id: ${{ secrets.DIGIKEY_ACCOUNT_ID }}
+          nexar-token: ${{ secrets.NEXAR_TOKEN }}
+          nexar-client-id: ${{ secrets.NEXAR_CLIENT_ID }}
+          nexar-client-secret: ${{ secrets.NEXAR_CLIENT_SECRET }}
+
+      - name: Publier les résultats
+        uses: actions/upload-artifact@v7
+        with:
+          name: radar-obsolescence
+          path: ${{ steps.radar.outputs.result-directory }}
+          if-no-files-found: error
+

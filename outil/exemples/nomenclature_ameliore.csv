@@ -1,0 +1,21 @@
+id;designation;domaine;quantite;fonction_critique;fabricant;reference_fabricant;fournisseur;nb_sources;statut_cycle_vie;piece_specifique;plans_ouverts;piece_usure;remplacable_utilisateur;ref_demontage;etapes_demontage;disponibilite_pieces_ans;interface_standard;logiciel_produit;logiciel_version;mise_a_jour_prevue;ecosysteme;paquet;paquet_version;depot;dependance_cloud;mode_local;date_fin_support;remarques
+M1;Boîtier ABS injecté (moule dédié);M;1;2;Plasturgie Rhône;BX-200;Plasturgie Rhône;2;;oui;oui;non;;;;15;;;;;;;;;;;;Moule propriété du fabricant, fichier STEP publié, second injecteur qualifié
+M2;Vis tête bombée M3x8 ISO 7380 inox;M;6;1;;ISO 7380 M3x8;Divers;5;;non;;non;;;;;;;;;;;;;;;;
+M3;Joint torique façade silicone ISO 3601;M;1;2;;ISO 3601 OR 45x2;Plasturgie Rhône;4;;non;;oui;oui;3;;15;;;;;;;;;;;;Joint standard logé dans une gorge, plus collé
+M4;Charnière trappe batterie;M;1;1;;CH-12;Plasturgie Rhône;2;;oui;oui;oui;oui;4;;15;;;;;;;;;;;;Fichier STEP publié
+E1;Module Wi-Fi/Bluetooth;E;1;3;Espressif;ESP32-WROOM-32E-N4;Mouser;1;ACTIF;non;;non;;;;;;;;;;;;;;;;Successeur recommandé par Espressif
+E2;Microcontrôleur Cortex-M3;E;1;3;STMicroelectronics;STM32F103C8T6;Farnell;2;ACTIF;non;;non;;;;;;;;;;;;;;;;
+E3;Condensateur électrolytique 470 µF 25 V 105 °C (module alimentation enfichable);E;2;3;;EEU-FC1E471;Mouser;4;ACTIF;non;;oui;oui;6;;15;;;;;;;;;;;;Module alimentation sur connecteur
+E4;Relais de puissance 16 A sur support (commande chauffage);E;1;3;;G5LE-1 DC5;Mouser;3;ACTIF;non;;oui;oui;7;;15;;;;;;;;;;;;
+E5;Module LTE-M/NB-IoT sur connecteur M.2 (alertes SMS);E;1;2;Quectel;BG95-M3;Mouser;2;;non;;non;;;;;oui;;;;;;;;;;;Format M.2 : module radio remplaçable
+E6;Écran LCD caractères 16x2 standard (contrôleur HD44780);E;1;2;;;Divers;4;;non;;non;;;;;;;;;;;;;;;;
+E7;Batterie Li-ion 18650 de secours;E;1;2;;INR18650-35E;Divers;4;ACTIF;non;;oui;oui;8;;15;;;;;;;;;;;;Format normalisé, trappe sans outil
+E8;Connecteur d'alimentation USB-C;E;1;2;;;Divers;5;;non;;non;;;;;oui;;;;;;;;;;;
+L1;Système d'exploitation passerelle Debian 13;L;1;3;;;;;;;;;;;;;;debian;13;oui;;;;;;;;
+L2;Interpréteur Python 3.13 (scripts passerelle);L;1;2;;;;;;;;;;;;;;python;3.13;oui;;;;;;;;
+L3;Bibliothèque OpenSSL;L;1;3;;;;;;;;;;;;;;openssl;3.5;oui;;;;;;;;Version LTS
+L4;Serveur web local Node.js;L;1;2;;;;;;;;;;;;;;nodejs;24;oui;;;;;;;;
+L5;Client HTTP natif de Node.js (fetch);L;1;2;;;;;;;;;;;;;;;;;;;;;;;;Dépendance npm « request » supprimée
+L6;Client MQTT Python paho-mqtt;L;1;2;;;;;;;;;;;;;;;;;pypi;paho-mqtt;;;;;;
+L7;Lecture capteur DHT (bibliothèque adafruit-circuitpython-dht);L;1;1;;;;;;;;;;;;;;;;;pypi;adafruit-circuitpython-dht;;https://github.com/adafruit/Adafruit_CircuitPython_DHT;;;;
+L8;Application mobile et service cloud du fabricant;L;1;3;;;;;;;;;;;;;;;;;;;;;oui;oui;2031-12-31;API locale ouverte : le thermostat reste pilotable sans le service du fabricant

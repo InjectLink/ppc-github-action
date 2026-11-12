@@ -1,0 +1,11 @@
+﻿Réf.;Composant;Cible;Étapes (Actuel);Étapes (Amélioré)
+1;Façade avant;Non;2;1
+2;Boîtier arrière;Non;3;2
+3;Joint d'étanchéité façade;Oui;7;2
+4;Trappe batterie et charnière;Oui;1;1
+5;Carte électronique principale;Non;4;2
+6;Condensateur d'alimentation;Oui;6;3
+7;Relais de puissance;Oui;6;3
+8;Batterie de secours;Oui;2;2
+9;Module Wi-Fi/Bluetooth;Non;5;3
+10;Écran LCD;Non;3;2
